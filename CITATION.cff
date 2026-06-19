@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "ICU End-of-Life and DNR Pilot Survey Analysis"
+message: "If you use this dataset or code, please cite the associated article and this repository."
+type: software
+authors:
+  - family-names: "Kucuksille"
+    given-names: "Ecir Ugur"
+repository-code: "https://github.com/REPLACE_WITH_OWNER/REPLACE_WITH_REPOSITORY"
+version: "0.1.0"
+date-released: "2026-06-19"
+keywords:
+  - intensive-care
+  - end-of-life-decisions
+  - DNR
+  - medical-ethics
+  - health-law
+  - pilot-study
+license: "NOASSERTION"

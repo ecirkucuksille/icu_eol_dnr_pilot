@@ -1,0 +1,13 @@
+Kodlama notları
+==============
+Toplam form: 28 (84 PDF sayfası / 3 sayfa). Katılımcı numaraları: 1-22 ve 24-29; 23 numarası dosyada yoktur.
+CSV UTF-8-SIG kodlamasıyla kaydedildi.
+Kalite notu: Çoğu kutu işareti görsel olarak doğrulandı; belirsiz/çoklu işaretler kodlama_notu sütununda belirtildi.
+
+Katilimci 9: Aktif rol sorusunda Evet/Hayır seçimi işaretlenmemiş.
+Katilimci 13: Q4 güven için 1 ve 3 işaretli; Q6'da iki seçenek yerine üç seçenek işaretli.
+Katilimci 14: Q5a'da Kararsızım belirgin; Katılıyorum kutusunda küçük/olası işaret bulunduğu için kontrol önerilir.
+Katilimci 17: Q4 pratik engel için F/Diğer işaretli; el yazısı 'Hepsi' olarak okundu.
+Katilimci 24: Katılımcı numaralandırmasında 23 atlanmış; form 24 olarak kodlandı.
+Katilimci 25: Q5b ve Q5c satırlarında işaret görülmedi.
+Katilimci 28: Birim alanında Yoğun bakım ve Anesteziyoloji ve Reanimasyon birlikte işaretli görünüyor.

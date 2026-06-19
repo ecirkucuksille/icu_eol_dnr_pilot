@@ -1,0 +1,43 @@
+﻿degisken,kod,aciklama
+katilimci_no,"1-22, 24-29",Formların sağ altındaki katılımcı numarası. Numaralandırmada 23 bulunmadığı için 22'den 24'e geçildi.
+pdf_sayfa_1/2/3,1-84,Katılımcıya ait PDF sayfa numaraları. Her katılımcı 3 sayfadır.
+unvan,Öğretim üyesi / Uzman hekim / Asistan hekim,Bölüm 1 demografik bilgi.
+birim,Yoğun bakım / Anesteziyoloji ve Reanimasyon / Diğer / çoklu değer,Bölüm 1 demografik bilgi; Diğer metni ayrı sütunda.
+mesleki_deneyim,0-3 yıl / 4-10 yıl / 10+ yıl,Bölüm 1 demografik bilgi.
+onceki_yasam_sonu_kararda_aktif_rol,Evet / Hayır / boş,Daha önce yaşam sonu tedavi sınırlandırma kararı içeren olguda aktif rol alma durumu.
+q1_hukuki_bilgi,A,Türkiye'de DNR ve tedavi sonlandırma için ayrıntılı yasal düzenleme mevcuttur.
+q1_hukuki_bilgi,B,Ötenazi yasaktır; hasta tedaviyi reddedebilir; ancak DNR ve yaşam sonu tedavi sınırlandırmasına ilişkin açık ve standart bir ulusal düzenleme yoktur.
+q1_hukuki_bilgi,C,"Hasta tedaviyi reddedemez, hekim tedaviyi sürdürmek zorundadır."
+q1_hukuki_bilgi,D,Withholding serbesttir ancak withdrawing yasaktır.
+q1_hukuki_bilgi,E,Fikrim yok.
+q2_withholding_withdrawing_ayrimi,A,Withdrawing etik açıdan daha ağır bir karardır.
+q2_withholding_withdrawing_ayrimi,B,Withholding etik açıdan daha ağır bir karardır.
+q2_withholding_withdrawing_ayrimi,C,Her ikisi etik açıdan eşdeğerdir.
+q2_withholding_withdrawing_ayrimi,D,Kararsızım.
+q3_klinik_etik_karar,A,Hukuki risk ve aile baskısı nedeniyle tedaviye devam edilmelidir.
+q3_klinik_etik_karar,B,"Tıbbi yararsızlık ilkesi doğrultusunda, aile ile iletişim sürdürülerek ve uygun belgeleme yapılarak ekip kararı uygulanabilir."
+q3_klinik_etik_karar,C,Karar tamamen aileye bırakılmalıdır.
+q3_klinik_etik_karar,D,Etik kurul veya palyatif bakım ekibi görüşü alınarak karar verilmelidir.
+q3_klinik_etik_karar,E,Kararsızım.
+q4_hukuki_guven,1,Hiç güvende hissettirmiyor.
+q4_hukuki_guven,2,Az güvende hissettiriyor.
+q4_hukuki_guven,3,Kararsızım.
+q4_hukuki_guven,4,Büyük ölçüde yeterli.
+q4_hukuki_guven,5,Tamamen yeterli.
+q4_pratik_engel,A,Yasal belirsizlik ve hukuki risk kaygısı.
+q4_pratik_engel,B,Aile baskısı ve iletişim güçlüğü.
+q4_pratik_engel,C,Ekip içi fikir ayrılığı.
+q4_pratik_engel,D,Kurumsal protokol/standart form eksikliği.
+q4_pratik_engel,E,Dini ve kültürel baskılar.
+q4_pratik_engel,F,Diğer; metin ayrı sütunda.
+q5a/q5b/q5c,1,Kesinlikle katılmıyorum.
+q5a/q5b/q5c,2,Katılmıyorum.
+q5a/q5b/q5c,3,Kararsızım.
+q5a/q5b/q5c,4,Katılıyorum.
+q5a/q5b/q5c,5,Kesinlikle katılıyorum.
+q6_A,1/0,Açık ve kapsamlı yasal düzenleme seçildi/seçilmedi.
+q6_B,1/0,Hastane/yoğun bakım düzeyinde yazılı protokoller ve standart DNR formu seçildi/seçilmedi.
+q6_C,1/0,Klinik etik kurul / etik danışmanlık mekanizması seçildi/seçilmedi.
+q6_D,1/0,Hekimlere yönelik eğitim programları seçildi/seçilmedi.
+q6_E,1/0,Palyatif bakım hizmetlerinin güçlendirilmesi seçildi/seçilmedi.
+q6_F,1/0,Diğer seçildi/seçilmedi.

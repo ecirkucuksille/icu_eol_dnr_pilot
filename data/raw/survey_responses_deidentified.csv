@@ -1,0 +1,29 @@
+﻿katilimci_no,pdf_sayfa_1,pdf_sayfa_2,pdf_sayfa_3,unvan,birim,birim_diger_metni,mesleki_deneyim,onceki_yasam_sonu_kararda_aktif_rol,q1_hukuki_bilgi,q2_withholding_withdrawing_ayrimi,q3_klinik_etik_karar,q4_hukuki_guven,q4_pratik_engel,q4_pratik_engel_diger_metni,q5a_yasam_sonu_konusmasi_yetkinlik,q5b_dini_kulturel_degerler_etkisi,q5c_etik_gorus_catismasi_dile_getirme,q6_A_yasal_duzenleme,q6_B_yazili_protokol_DNR_formu,q6_C_etik_kurul_danismanlik,q6_D_hekim_egitimi,q6_E_palyatif_bakim,q6_F_diger,q6_secimler,q6_diger_metni,kodlama_notu
+1,1,2,3,Asistan hekim,Diğer,Kardiyoloji,4-10 yıl,Evet,B,A,A,1,A,,4,3,4,1,0,0,0,1,0,A;E,,
+2,4,5,6,Öğretim üyesi,Yoğun bakım,,10+ yıl,Evet,B,C,B,1,A,,1,1,1,1,1,0,0,0,0,A;B,,
+3,7,8,9,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,C,A,1,B,,4,3,2,0,1,0,0,0,0,B,,
+4,10,11,12,Uzman hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,A,B,1,A,,4,2,2,1,1,0,0,0,0,A;B,,
+5,13,14,15,Uzman hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,A,B,1,A,,4,5,4,1,1,0,0,0,0,A;B,,
+6,16,17,18,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,D,B,B,2,C,,3,3,3,0,0,1,0,0,0,C,,
+7,19,20,21,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Hayır,B,C,A,3,E,,4,4,4,0,0,0,0,1,0,E,,
+8,22,23,24,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Hayır,B,C,D,1,A,,4,1,1,1,0,0,0,0,0,A,,
+9,25,26,27,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,,B,C,B,2,D,,3,4,1,0,0,0,0,1,0,E,,Aktif rol sorusunda Evet/Hayır seçimi işaretlenmemiş.
+10,28,29,30,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Hayır,A,A,A,1,A,,3,3,3,0,1,0,0,0,0,B,,
+11,31,32,33,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,A,D,2,A,,4,4,4,1,0,1,0,0,0,A;C,,
+12,34,35,36,Asistan hekim,Yoğun bakım,,4-10 yıl,Evet,B,A,B,2,A,,1,4,2,1,1,0,0,0,0,A;B,,
+13,37,38,39,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,A,A,1;3,A,,4,4,4,1,0,1,0,1,0,A;C;E,,Q4 güven için 1 ve 3 işaretli; Q6'da iki seçenek yerine üç seçenek işaretli.
+14,40,41,42,Uzman hekim,Yoğun bakım,,10+ yıl,Hayır,B,C,A,1,A,,3,1,1,1,0,0,0,1,0,A;E,,Q5a'da Kararsızım belirgin; Katılıyorum kutusunda küçük/olası işaret bulunduğu için kontrol önerilir.
+15,43,44,45,Uzman hekim,Yoğun bakım,,10+ yıl,Evet,B,C,A,2,A,,2,2,4,1,1,0,0,0,0,A;B,,
+16,46,47,48,Asistan hekim,Diğer,İç hastalıkları,4-10 yıl,Evet,B,A,A,1,A,,4,4,2,1,1,0,0,0,0,A;B,,
+17,49,50,51,Asistan hekim,Anesteziyoloji ve Reanimasyon,,0-3 yıl,Hayır,B,C,A,2,F,Hepsi,3,4,2,0,1,0,0,0,0,B,,Q4 pratik engel için F/Diğer işaretli; el yazısı 'Hepsi' olarak okundu.
+18,52,53,54,Asistan hekim,Anesteziyoloji ve Reanimasyon,,0-3 yıl,Evet,B,D,B,1,A,,1,3,2,0,1,0,0,0,0,B,,
+19,55,56,57,Asistan hekim,Yoğun bakım,,0-3 yıl,Evet,B,C,A,1,A,,3,4,2,1,1,0,0,0,0,A;B,,
+20,58,59,60,Asistan hekim,Anesteziyoloji ve Reanimasyon,,0-3 yıl,Evet,B,C,A,1,A,,3,4,2,1,1,0,0,0,0,A;B,,
+21,61,62,63,Uzman hekim,Yoğun bakım,,4-10 yıl,Evet,B,A,E,2,A,,3,3,2,1,0,0,0,0,0,A,,
+22,64,65,66,Asistan hekim,Diğer,Göğüs hastalıkları,4-10 yıl,Hayır,E,D,A,1,A,,4,4,1,1,0,0,0,0,0,A,,
+24,67,68,69,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,C,B,1,A,,3,3,3,1,0,0,0,0,0,A,,Katılımcı numaralandırmasında 23 atlanmış; form 24 olarak kodlandı.
+25,70,71,72,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Hayır,B,A,A,1,A,,1,,,1,0,0,0,0,0,A,,Q5b ve Q5c satırlarında işaret görülmedi.
+26,73,74,75,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,C,C,3,A,,4,3,5,1,0,0,0,0,0,A,,
+27,76,77,78,Asistan hekim,Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,B,B,C,3,D,,3,3,4,0,0,1,0,0,0,C,,
+28,79,80,81,Asistan hekim,Yoğun bakım;Anesteziyoloji ve Reanimasyon,,4-10 yıl,Evet,C,B,B,1,A,,4,4,5,0,1,0,0,0,0,B,,Birim alanında Yoğun bakım ve Anesteziyoloji ve Reanimasyon birlikte işaretli görünüyor.
+29,82,83,84,Uzman hekim,Yoğun bakım,,10+ yıl,Evet,C,C,B,1,A,,4,3,2,1,0,0,0,0,0,A,,
