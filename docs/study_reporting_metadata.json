@@ -1,0 +1,20 @@
+{
+  "data_collection_start": null,
+  "data_collection_end": null,
+  "sampling_and_invitation_method": null,
+  "inclusion_and_exclusion_criteria": null,
+  "n_eligible": null,
+  "n_invited": null,
+  "n_participated": 28,
+  "n_declined_or_nonresponded": null,
+  "ethics_committee_official_name": null,
+  "ethics_approval_date": null,
+  "ethics_decision_number": null,
+  "consent_procedure_or_documented_waiver": null,
+  "public_data_sharing_authorization_confirmed": null,
+  "unverified_previous_draft_ethics": {
+    "committee": "Suleyman Demirel University Health Sciences Ethics Committee",
+    "date": "2026-04-30",
+    "decision": "118/5"
+  }
+}

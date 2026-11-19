@@ -1,0 +1,24 @@
+{
+  "upstream_source_commit": "c4946ab57f47dd80444a0380b5f03cc39fd26678",
+  "raw_sha256": "85e06271aa7e320f814dff1665bad542dc9ba642d7aa99f76f76b238fb5fecb9",
+  "n": 28,
+  "knowledge_correct": 23,
+  "low_security": 24,
+  "security_denominator": 27,
+  "correct_item_with_valid_security": 22,
+  "correct_item_and_low_security": 19,
+  "legal_regulation": 19,
+  "written_protocol": 13,
+  "both_preferences": 8,
+  "either_preference": 24,
+  "education_selected": 0,
+  "tests_in_multiplicity_family": 9,
+  "profile_models_all_converged": true,
+  "max_profile_root_error": 6.040865807577234e-08,
+  "versions": {
+    "python": "3.12.16",
+    "pandas": "3.1.0",
+    "numpy": "2.3.5",
+    "scipy": "1.18.1"
+  }
+}

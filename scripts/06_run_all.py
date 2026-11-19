@@ -15,6 +15,9 @@ SCRIPTS = [
     "03_descriptive_analysis.py",
     "04_inferential_analysis.py",
     "05_make_figures.py",
+    "07_revision_audit.py",
+    "10_build_data_dictionary.py",
+    "09_verify_manuscript_consistency.py",
 ]
 
 
@@ -27,3 +30,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

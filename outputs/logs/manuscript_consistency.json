@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "scope": "Numerical agreement of six tables and key narrative counts with checked Word versions; not verification of author-dependent study facts.",
+  "checked_documents": {
+    "manuscript": {
+      "filename": "ICU_Ethic_Makale_Renkli_Revizyon.docx",
+      "sha256": "75d91f769a7775082883d5154ca677dc1939b7e4bf3a044107399fb34e997e9d",
+      "version": 1
+    },
+    "supplement": {
+      "filename": "ICU_Ethic_Ek_Materyal.docx",
+      "sha256": "fcfeeacb545b4f053c55b5292c292c46e3816746b437543a7176eaf4ae17df1e",
+      "version": 0
+    }
+  },
+  "raw_sha256": "85e06271aa7e320f814dff1665bad542dc9ba642d7aa99f76f76b238fb5fecb9",
+  "checks_passed": 26,
+  "checks": [
+    "participant count",
+    "raw fields preserved in processed data",
+    "Table 1: all demographic numerators and percentages",
+    "Table 2 raw-derived count: hukuki_bilgi_dogru",
+    "Table 2 raw-derived count: hukuki_guvensizlik",
+    "Table 2 raw-derived count: hukuki_risk_ana_engel",
+    "Table 2 raw-derived count: hukuki_prosedurel_cozum",
+    "Table 2 raw-derived count: etik_esdegerlik",
+    "Table 2 raw-derived count: withdraw_daha_agir",
+    "Table 2 raw-derived count: riskten_kacinan_tedaviye_devam",
+    "Table 2 raw-derived count: paylasimli_kurumsal_karar",
+    "Table 2 raw-derived count: yasal_duzenleme_talebi",
+    "Table 2 raw-derived count: dnr_protokol_talebi",
+    "Table 2 raw-derived count: q6_C_etik_kurul_danismanlik",
+    "Table 2 raw-derived count: q6_D_hekim_egitimi",
+    "Table 2 raw-derived count: q6_E_palyatif_bakim",
+    "Table 2: all indicator cells including Wilson intervals",
+    "Table 3: five comparisons, all numeric cells",
+    "Table S2: all nine comparisons including Holm correction",
+    "Table S3: six coefficients, profile intervals and PLR p",
+    "Table S4: all four reported sensitivities",
+    "paired keyed-response/low-security count",
+    "both solution priorities",
+    "Q6 marking counts",
+    "dictionary coverage/order",
+    "dictionary nonmissing counts"
+  ],
+  "dictionary_fields": 52,
+  "known_label_correction": {
+    "location": "Manuscript Table 1 professional experience",
+    "current_label": ">10 years",
+    "source_label": "10+ yıl",
+    "recommended_label": "10+ years",
+    "effect_on_results": "None; source categories and four respondents are unchanged."
+  },
+  "limitations": [
+    "Numerical agreement does not resolve pending ethics, consent, dates, recruitment and data-sharing metadata.",
+    "Manuscript Word file is not modified by this verification."
+  ]
+}

@@ -1,10 +1,8 @@
 """Minimal Firth penalized logistic regression implementation.
 
-This implementation is designed for small pilot analyses with binary outcomes.
-It uses the adjusted score equation for Firth's bias-reduced logistic
-regression and reports approximate standard errors from the final information
-matrix. For confirmatory analyses, the model should be replicated in a
-specialized statistical package.
+Supplementary exploratory models use the adjusted Firth score, full-model
+profile penalized-likelihood confidence limits and penalized LR tests. Wald
+columns remain diagnostic only and are not used in revised manuscript tables.
 """
 from __future__ import annotations
 
@@ -12,6 +10,8 @@ import math
 import numpy as np
 import pandas as pd
 from scipy.stats import norm
+from scipy.stats import chi2
+from scipy.optimize import minimize, brentq
 
 
 def _logit_inv(eta: np.ndarray) -> np.ndarray:
@@ -30,6 +30,45 @@ def _penalized_loglik(X: np.ndarray, y: np.ndarray, beta: np.ndarray) -> float:
     if sign <= 0:
         logdet = -1e12
     return float(ll + 0.5 * logdet)
+
+
+def _profile_inference(X, y, beta, index):
+    """Profile the full-model Jeffreys penalty with one coefficient fixed.
+
+    The determinant always uses the full design matrix, including the fixed
+    term. Dropping that column would change the penalty and invalidate the LR.
+    """
+    free = np.arange(X.shape[1]) != index
+    optimum = _penalized_loglik(X, y, beta)
+    def profile(value):
+        start = beta.copy()
+        start[index] = value
+        if not free.any():
+            return _penalized_loglik(X, y, start)
+        def objective(nuisance):
+            b = start.copy()
+            b[free] = nuisance
+            return -_penalized_loglik(X, y, b)
+        result = minimize(objective, start[free], method="Nelder-Mead",
+            options={"maxiter": 3000, "xatol": 1e-9, "fatol": 1e-10})
+        if not result.success or not np.isfinite(result.fun):
+            raise RuntimeError("Constrained Firth optimization did not converge")
+        return -result.fun
+    target = chi2.ppf(0.95, 1)
+    def equation(value):
+        return 2 * (optimum - profile(value)) - target
+    roots = []
+    for direction in [-1, 1]:
+        step = 1.0
+        edge = beta[index] + direction * step
+        while equation(edge) < 0 and step < 64:
+            step *= 2
+            edge = beta[index] + direction * step
+        if equation(edge) < 0:
+            raise RuntimeError("Could not bracket Firth profile confidence limit")
+        roots.append(brentq(equation, min(edge, beta[index]), max(edge, beta[index]), xtol=1e-7))
+    statistic = max(0.0, 2 * (optimum - profile(0.0)))
+    return roots[0], roots[1], float(chi2.sf(statistic, 1)), [equation(v) for v in roots]
 
 
 def fit_firth_logistic(
@@ -53,7 +92,7 @@ def fit_firth_logistic(
     Returns
     -------
     pandas.DataFrame
-        One row per term, including approximate OR and 95% CI.
+        One row per term, including OR, profile 95% CI and penalized LR p.
     """
     cols = [outcome] + predictors
     tmp = df[cols].apply(pd.to_numeric, errors="coerce").dropna().copy()
@@ -61,6 +100,10 @@ def fit_firth_logistic(
     y = tmp[outcome].to_numpy(dtype=float)
     X_pred = tmp[predictors].to_numpy(dtype=float)
     X = np.column_stack([np.ones(n), X_pred])
+    if not n or not np.isin(y, [0, 1]).all():
+        raise ValueError("Firth outcome must contain binary nonmissing observations")
+    if np.linalg.matrix_rank(X) < X.shape[1]:
+        raise ValueError("Firth design matrix is rank deficient")
     terms = ["Intercept"] + predictors
 
     beta = np.zeros(X.shape[1], dtype=float)
@@ -104,10 +147,12 @@ def fit_firth_logistic(
     se = np.sqrt(np.clip(np.diag(cov), 0, np.inf))
 
     rows = []
-    for term, b, s in zip(terms, beta, se):
+    if not success:
+        raise RuntimeError("Firth adjusted-score iteration failed to converge")
+    for index, (term, b, s) in enumerate(zip(terms, beta, se)):
+        lower, upper, p_profile, residuals = _profile_inference(X, y, beta, index)
         # Wald-type p-values are approximate and are intended only for
-        # transparent reporting in this pilot analysis. The manuscript
-        # interprets Firth models primarily by effect direction and CI width.
+        # transparent reporting in this pilot analysis. The revised tables use profile intervals and penalized LR p-values.
         z_value = b / s if s > 0 else np.nan
         p_wald = 2 * norm.sf(abs(z_value)) if np.isfinite(z_value) else np.nan
         rows.append({
@@ -120,6 +165,13 @@ def fit_firth_logistic(
             "OR95_alt_approx": float(math.exp(b - 1.959963984540054 * s)),
             "OR95_ust_approx": float(math.exp(b + 1.959963984540054 * s)),
             "p_wald_approx": float(p_wald) if np.isfinite(p_wald) else np.nan,
+            "OR95_lower_profile": float(math.exp(lower)),
+            "OR95_upper_profile": float(math.exp(upper)),
+            "p_penalized_LR": p_profile,
+            "profile_root_max_error": max(abs(v) for v in residuals),
+            "events": int(y.sum()),
+            "non_events": int(n-y.sum()),
             "success": bool(success),
         })
     return pd.DataFrame(rows)
+

@@ -37,7 +37,7 @@ COMPOSITE_INDICATORS = [
     "q6_E_palyatif_bakim",
     "q5a_yetkinlik_yuksek",
     "q5b_deger_etkisi_yuksek",
-    "q5c_catismayi_dile_getirme_yuksek",
+    "q5c_catismayi_dile_getirmede_gucluk_yuksek",
 ]
 
 
@@ -55,3 +55,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

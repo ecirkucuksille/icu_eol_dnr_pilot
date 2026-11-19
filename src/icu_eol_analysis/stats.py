@@ -11,6 +11,7 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 from scipy.stats import fisher_exact
+from scipy.stats.contingency import odds_ratio
 
 
 def wilson_ci(k: int, n: int, z: float = 1.959963984540054) -> tuple[float, float]:
@@ -82,7 +83,7 @@ def summarize_binary_indicators(df: pd.DataFrame, indicators: Iterable[str]) -> 
 
 
 def fisher_table(df: pd.DataFrame, exposure: str, outcome: str) -> dict:
-    """Compute a 2x2 Fisher exact test and Haldane-Anscombe OR CI.
+    """Two-sided Fisher test with a conditional OR and exact conditional CI.
 
     The 2x2 layout is:
         [[a, b], [c, d]]
@@ -99,15 +100,12 @@ def fisher_table(df: pd.DataFrame, exposure: str, outcome: str) -> dict:
     c = int(((tmp[exposure] == 0) & (tmp[outcome] == 1)).sum())
     d = int(((tmp[exposure] == 0) & (tmp[outcome] == 0)).sum())
 
+    if a+b+c+d != len(tmp):
+        raise ValueError("Fisher comparisons require binary 0/1 values")
     table = [[a, b], [c, d]]
-    fisher_or, p_value = fisher_exact(table, alternative="two-sided")
-
-    # Haldane-Anscombe correction for approximate OR CI when cells are sparse.
-    ah, bh, ch, dh = a + 0.5, b + 0.5, c + 0.5, d + 0.5
-    or_ha = (ah * dh) / (bh * ch)
-    se_log_or = math.sqrt(1 / ah + 1 / bh + 1 / ch + 1 / dh)
-    lo = math.exp(math.log(or_ha) - 1.959963984540054 * se_log_or)
-    hi = math.exp(math.log(or_ha) + 1.959963984540054 * se_log_or)
+    sample_or, p_value = fisher_exact(table, alternative="two-sided")
+    estimate = odds_ratio(table, kind="conditional")
+    interval = estimate.confidence_interval(confidence_level=0.95)
 
     exp1_total = a + b
     exp0_total = c + d
@@ -125,8 +123,11 @@ def fisher_table(df: pd.DataFrame, exposure: str, outcome: str) -> dict:
         "pozitif_oran_exp1": rate1,
         "pozitif_oran_exp0": rate0,
         "risk_farki": rate1 - rate0 if pd.notna(rate1) and pd.notna(rate0) else np.nan,
-        "fisher_or": fisher_or,
-        "or_ha_95_alt": lo,
-        "or_ha_95_ust": hi,
+        "sample_or_diagnostic": sample_or,
+        "or_conditional": estimate.statistic,
+        "or_exact95_lower": interval.low,
+        "or_exact95_upper": interval.high,
+        "or_method": "conditional MLE; exact conditional 95% CI",
         "p_fisher": p_value,
     }
+

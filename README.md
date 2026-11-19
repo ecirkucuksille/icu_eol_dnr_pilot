@@ -1,85 +1,108 @@
-# ICU End-of-Life and DNR Pilot Survey Analysis
+# ICU End-of-Life and DNR Exploratory Survey Analysis
 
-This repository contains the de-identified dataset, reproducible analysis scripts, tables, and figures for a pilot cross-sectional study on physicians' legal knowledge, perceived legal security, ethical attitudes, and procedural solution expectations regarding end-of-life decisions and do-not-resuscitate (DNR) decisions in intensive care practice. The repository is currently maintained as a private repository during manuscript evaluation and is planned to be made publicly available after acceptance at: https://github.com/ecirkucuksille/icu_eol_dnr_pilot.
+Data, analysis code and metadata accompanying **End-of-Life Decisions in Intensive
+Care at a University Hospital: An Evaluation of Physicians’ Approaches**.
+This is a single-centre exploratory cross-sectional survey of 28 physicians.
+The historical repository name includes `pilot`; this does not imply a verified,
+prespecified feasibility-study design. One legal-framework item is not a validated
+measure of overall legal knowledge, and vignette responses are hypothetical.
 
-## Repository purpose
+Repository: https://github.com/ecirkucuksille/icu_eol_dnr_pilot
 
-The repository is prepared for transparent peer review, reproducibility, and eventual manuscript citation after acceptance. It allows reviewers, editors, and readers to inspect how the structured assessment form responses were converted into analysis variables and how the reported descriptive, Fisher exact, and exploratory Firth penalized logistic regression results were generated.
+## Data and dictionary
 
-In addition to the scripts required to reproduce the results reported in the manuscript, the repository includes documented supplementary scripts for data validation, variable derivation, descriptive summaries, exploratory analyses, cross-tabulations, and figure generation. These supplementary scripts are provided to support transparency and auditability; they should not be interpreted as additional confirmatory analyses beyond the results reported in the article.
+- [Raw responses](data/raw/survey_responses_deidentified.csv): 28 rows × 27 columns.
+- Processed responses: `data/processed/survey_responses_derived.csv` is generated locally; 28 rows × 52 columns (raw fields plus 25 derived fields). It is excluded from Git.
+- **[Data dictionary](data/metadata/data_dictionary.md)**: readable descriptions of every raw and derived variable, response codes, derivation rules, missing values, denominators and interpretation limits.
+- [Machine-readable dictionary](data/metadata/data_dictionary.csv): one row per processed-data column; includes dataset paths, source fields and observed missing counts.
+- [Original response-option codebook](data/metadata/codebook.csv): retained Turkish option wording; the complete current dictionary above also covers derived fields.
+- [Coding notes](data/metadata/coding_notes.txt): digitization ambiguities and unusual markings.
 
+The pre-revision processed snapshot is removed from version control; run the pipeline to regenerate the corrected version locally. This update does not upload any participant-level records. Existing upstream raw data are left unchanged.
 
-## Data and code availability statement
+Completed source questionnaires, scans and handwriting are excluded. The tabular
+data have no direct personal identifiers. Public availability is not evidence of
+an ethics/consent determination; author-dependent approval, consent, recruitment
+and collection-date facts remain pending in
+[study reporting metadata](docs/study_reporting_metadata.json).
 
-The de-identified dataset generated from the structured assessment forms and the documented Python analysis scripts will be made publicly available in this GitHub repository after acceptance of the manuscript. During peer review, the anonymized dataset and analysis code can be provided to the editorial office upon reasonable request, in accordance with journal policies and applicable ethical and data protection requirements.
-
-The scanned original assessment forms are not included and will not be publicly shared, because they may contain handwritten marks or contextual information that could increase re-identification risk. The public repository will therefore include only de-identified tabular data, metadata/codebook files, analysis scripts, and reproducible output files.
-
-## Folder structure
-
-```text
-.
-├── data/
-│   ├── raw/                         # De-identified manually digitized survey data
-│   ├── processed/                   # Analysis-ready derived dataset
-│   └── metadata/                    # Codebook and coding notes
-├── docs/                            # Methodological notes
-├── outputs/
-│   ├── tables/                      # Reproducible CSV result tables
-│   ├── figures/                     # Manuscript-ready figures
-│   └── logs/                        # Validation reports
-├── scripts/                         # Reproducible analysis pipeline
-├── src/icu_eol_analysis/            # Reusable helper functions
-└── tests/                           # Basic data-integrity tests
-```
-
-## Data files
-
-- `data/raw/survey_responses_deidentified.csv`: de-identified manually digitized survey responses.
-- `data/processed/survey_responses_derived.csv`: derived analysis dataset generated from the raw CSV.
-- `data/metadata/codebook.csv`: variable descriptions and coding information.
-- `data/metadata/coding_notes.txt`: notes retained from the manual coding process.
-
-The scanned source forms are not included in this repository because they may contain handwritten notes or contextual information that should not be redistributed publicly.
-
-## Quick start
+## Reproduce the revised analyses
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python scripts/06_run_all.py
+python -m pytest -q
 ```
 
-Expected main outputs:
+The pipeline validates the source data, derives variables, generates descriptive
+and inferential tables and three PNG figures, rebuilds both dictionary formats,
+and checks numerical agreement with the revised manuscript and supplement.
 
-- `outputs/tables/descriptive_frequencies.csv`
-- `outputs/tables/composite_indicators.csv`
-- `outputs/tables/fisher_exact_tests.csv`
-- `outputs/tables/firth_logistic_models.csv`
-- `outputs/figures/figure1_composite_indicators.png`
-- `outputs/figures/figure2_solution_preferences.png`
-- `outputs/figures/figure3_legal_risk_solution_demand.png`
+| Step | Script | Purpose |
+| --- | --- | --- |
+| 1 | `01_validate_data.py` | Source schema, count, numbering and private PDF-page linkage |
+| 2 | `02_derive_variables.py` | Main indicators and explicit sensitivity scenarios |
+| 3 | `03_descriptive_analysis.py` | Frequencies and Wilson 95% intervals |
+| 4 | `04_inferential_analysis.py` | Nine Fisher tests with Holm correction, conditional ORs, supplementary profile Firth models and sensitivities |
+| 5 | `05_make_figures.py` | Figures 1–3 |
+| 6 | `07_revision_audit.py` | Raw-data checksum, denominators and numerical convergence |
+| 7 | `10_build_data_dictionary.py` | Complete CSV and Markdown dictionary |
+| 8 | `09_verify_manuscript_consistency.py` | Six main/supplementary result tables and key narrative counts |
 
-## Analysis pipeline
+`06_run_all.py` orchestrates these steps. Script numbering reflects when a check
+was added; dictionary generation runs before its consistency check.
 
-The primary manuscript results can be reproduced by running the complete pipeline below. Additional outputs generated by the pipeline, such as extended cross-tabulations or exploratory summaries, are retained for transparency and quality control and are documented as supplementary analysis outputs.
+Check author-dependent submission metadata separately:
 
-1. `01_validate_data.py` checks required columns, participant count, participant numbering, and PDF page coverage.
-2. `02_derive_variables.py` creates binary and composite indicators used in the manuscript.
-3. `03_descriptive_analysis.py` generates frequency tables and Wilson 95% confidence intervals.
-4. `04_inferential_analysis.py` runs Fisher exact tests and exploratory Firth penalized logistic regression models.
-5. `05_make_figures.py` creates manuscript-ready PNG figures.
-6. `06_run_all.py` runs the complete pipeline.
+```bash
+python scripts/08_check_submission_readiness.py
+```
 
-## Methodological notes
+That command deliberately returns a nonzero exit code while required study facts
+are unverified. Passing analysis checks does not mean those facts are complete.
 
-This is a pilot cross-sectional survey with 28 participants. The analyses are therefore exploratory and hypothesis-generating. Fisher exact tests are used for small-sample categorical comparisons, and Firth penalized logistic regression is used to reduce instability associated with sparse cells and separation in small logistic models.
+## Manuscript alignment
 
-## Suggested citation
+[Consistency report](docs/manuscript_consistency_2026-11-19.md) and
+[machine-readable results](outputs/logs/manuscript_consistency.json) document the
+checked Word versions, source checksums and scope. All numeric cells in Tables
+1–3 and S2–S4 are compared with a fixed manifest extracted from the checked Word
+files; the actual Word files are not distributed here.
 
-Before public release, update `CITATION.cff` with the final author list, accepted article title, journal information, article DOI, and, if assigned, a repository DOI. The repository URL currently planned for public release is: https://github.com/ecirkucuksille/icu_eol_dnr_pilot.
+The main comparison is 22/22 versus 2/6, Fisher p=0.0007326 and Holm-adjusted
+p=0.0065934 (reported as 0.007). Conditional OR is infinite, with exact 95% CI
+3.72–infinity. Supplementary Firth M2 gives OR 43.31, profile 95% CI
+3.43–5525.48 and PLR p=0.003. These are exploratory associations and cannot
+establish causal or independent effects.
 
-## License
+One label correction remains for the author: manuscript Table 1 should show
+**10+ years**, matching the source form and CSV, instead of **>10 years**.
+Counts and analyses are unaffected. The source categories 4–10 and 10+ overlap
+at 10; the dictionary preserves that limitation.
 
-The code license and data reuse terms should be confirmed by the research team before public release. A placeholder license file is included for this reason.
+## Outputs and interpretation
+
+Current tables are under `outputs/tables/`; figures under `outputs/figures/`.
+Older cross-tabulations and Spearman summaries are retained only in
+`outputs/legacy_pre_revision/`, explicitly excluded from current manuscript
+results. Wald approximations in the Firth CSV are diagnostic columns; the
+manuscript uses profile penalized-likelihood intervals and PLR p-values.
+
+The revised security denominator is 27 because one 1/3 double marking is missing
+in the main analysis. Missing Q5b/Q5c remain missing, and high Q5c endorsement
+means more difficulty voicing disagreement. Q6 requested two priorities; all
+marked options are retained, with an explicit sensitivity for the three-selection
+form. See the dictionary and [methodological notes](docs/methodological_notes.md).
+
+## Citation and reuse
+
+`CITATION.cff` provides software citation metadata, version 0.2.0. An article DOI
+has not been supplied and is not invented. The code licence and data reuse terms
+remain unspecified in `LICENSE_TO_BE_SELECTED.md`; public access does not itself
+grant a new licence. This revision does not change those terms.
+
+See [18 November revision log](docs/revision_changes_2026-11-18.md) for the
+statistical corrections and [19 November consistency report](docs/manuscript_consistency_2026-11-19.md)
+for the dictionary and manuscript alignment verification.
